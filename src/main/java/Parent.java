@@ -1,6 +1,15 @@
 public abstract class Parent {
     private String name;
 
+    public Parent() {
+        System.out.println("Parent: constructor");
+    }
+
+    public Parent(String name) {
+        this.name = name;
+        System.out.println("Parent: " + name + "-constructor");
+    }
+
     static {
         System.out.println("Parent: static 1");
     }
@@ -13,16 +22,11 @@ public abstract class Parent {
         System.out.println("Parent: static 2");
     }
 
-    public Parent() {
-        System.out.println("Parent: constructor");
-    }
+
 
     {
         System.out.println("Parent: instance 2");
     }
 
-    public Parent(String name) {
-        this.name = name;
-        System.out.println("Parent: " + name + "-constructor");
-    }
+
 }

@@ -7,7 +7,7 @@ public class AddressBook {
 
     /** Метод добавляет контакт в телефонный справочник */
     public void add(String surname, String phoneNumber) {
-        if(addressBook.containsKey(surname)){
+        if(addressBook.containsKey(surname) && !addressBook.get(surname).equals(phoneNumber)){
             addressBook.put(surname, addressBook.get(surname) + ", " + phoneNumber);
         }
         else{

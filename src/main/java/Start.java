@@ -1,22 +1,55 @@
-public class Start implements FirstPart {
-    public static void main(String[] args) {
-        System.out.println("The first part of Homework\n");
-        FirstPart.getUniqueValues(FirstPart.fillArray());
-        System.out.println("==============================");
-        FirstPart.countValues(FirstPart.fillArray());
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-        System.out.println("\nThe second part of Homework\n");
-        AddressBook addressBook = new AddressBook();
-        addressBook.add("Pelevin", "+380991234567");
-        addressBook.add("Kolin", "+380991234567");
-        addressBook.add("Kolin", "+380991234561");
-        addressBook.add("Bulgarin", "+780991234567");
-        addressBook.add("Petrov", "+9999999");
-        addressBook.add("Petrov", "+9999999");
-        addressBook.get("Kolin");
-        addressBook.get("Pelevin");
-        addressBook.get("Bulgarin");
-        addressBook.get("Petrov");
+public class Start{
+
+    public static void main(String[] args) {
+
+        List<Fruit> fruits = new ArrayList<>(); // Consumer (Parent)
+        List<Apple> apples = new ArrayList<>(); // Producer (Child)
+
+        Fruit fruit = new Fruit();
+        Apple apple = new Apple();
+
+        fruits.add(new Fruit());
+        apples.add(new Apple());
+
+        CollectionUtils.addAll(apples, fruits);
+
+        CollectionUtils.newArrayList();
+
+        CollectionUtils.indexOf(fruits, new Fruit());
+        CollectionUtils.indexOf(apples, new Fruit());
+        CollectionUtils.indexOf(fruits, new Apple());
+
+        CollectionUtils.limit(apples, 1);
+
+        CollectionUtils.add(fruits, new Fruit());
+        CollectionUtils.add(fruits, new Apple());
+        CollectionUtils.add(apples, new Apple());
+
+        CollectionUtils.removeAll(fruits, apples);
+        CollectionUtils.removeAll(apples, fruits);
+        CollectionUtils.removeAll(apples, apples);
+
+        CollectionUtils.add(fruits, new Fruit());
+        CollectionUtils.add(apples, new Apple());
+
+        fruits.add(fruit);
+        fruits.add(apple);
+        apples.add(apple);
+
+        System.out.println("Contains all:");
+        System.out.println(CollectionUtils.containsAll(apples, fruits));
+        System.out.println(CollectionUtils.containsAll(fruits, apples));
+
+        System.out.println("Contains any:");
+        System.out.println(CollectionUtils.containsAny(apples, fruits));
+        System.out.println(CollectionUtils.containsAny(fruits, apples));
+
+        System.out.println(CollectionUtils.range(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), 3, 8));
+
     }
 
 }

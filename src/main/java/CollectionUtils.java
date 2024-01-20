@@ -1,9 +1,10 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class CollectionUtils implements Comparable<CollectionUtils>{
+public class CollectionUtils<T extends Comparable<T>> implements Comparable<T>{
     public static<T> void addAll(List<? extends T> source, List<? super T> destination) {
         destination.addAll(source);
     }
@@ -42,24 +43,34 @@ public class CollectionUtils implements Comparable<CollectionUtils>{
         return false;
     }
 
-    public static <T> List range(List<T> list, T min, T max) {
+    public static <T extends Comparable<? super T>> List range(List list, T min, T max) {
         List<T> newList = new ArrayList<>();
-       for (T element : list) {
-           Integer diffMin = (Integer) element - (Integer) min;
-           Integer diffMax = (Integer) element - (Integer) max;
-           if (diffMin >= 0 && 0 >= diffMax) {
-               newList.add(element);
-           }
-       }
+        for (Object element : list) {
+            Integer diffMin = (Integer) element - (Integer) min;
+            Integer diffMax = (Integer) element - (Integer) max;
+            if (diffMin >= 0 && 0 >= diffMax) {
+                newList.add((T) element);
+            }
+        }
+        Collections.sort(newList);
         return newList;
     }
 
-    public static<T> List range(List<? extends T> list, T min, T max, Comparator comparator) {
-        return newArrayList();
+    public static<T extends Comparable<? super T>> List range(List<? extends T> list, T min, T max, Comparator comparator) {
+        List<T> newList = new ArrayList<>();
+        for (Object element : list) {
+            Integer diffMin = (Integer) element - (Integer) min;
+            Integer diffMax = (Integer) element - (Integer) max;
+            if (diffMin >= 0 && 0 >= diffMax) {
+                newList.add((T) element);
+            }
+        }
+        newList.sort(comparator);
+        return newList;
     }
 
     @Override
-    public int compareTo(CollectionUtils o) {
+    public int compareTo(T o) {
         return 0;
     }
 }

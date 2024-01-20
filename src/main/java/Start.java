@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Start{
 
@@ -48,7 +46,9 @@ public class Start{
         System.out.println(CollectionUtils.containsAny(apples, fruits));
         System.out.println(CollectionUtils.containsAny(fruits, apples));
 
+        Comparator comparator = new MyComparator();
         System.out.println(CollectionUtils.range(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), 3, 8));
+        System.out.println(CollectionUtils.range(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), 4, 8, comparator));
 
     }
 
